@@ -4,6 +4,8 @@ var DinnerModel = function() {
 	var guests = 4;
 	var menu = [];
 	var observers = [];	
+
+	
  
 	this.addObserver = function(observer) {
 		observers.push(observer);
