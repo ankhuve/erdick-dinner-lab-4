@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+
+  </head>
+  <body>
+	<div class="container full-width">
+
+		<div class="mainHeader" style="display: none;">
+			<h1 class="clickable">HOMELETTE <small><i>From the best chefs in the world directly into your kitchen</i></small></h1>
+			<hr id="headerDivider">
+		</div>
+
+		<div id="divOfStartscreenness">
+			<div class="container" id="foodBackground">
+				<h1 id="startScreenHeader">HOMELETTE <small id="startscreenSmall"><i>From the best chefs in the world directly into your kitchen</i></small></h1>
+				<hr id="headerDivider">
+				<div class="row">
+					<div class="col-md-5" id="quickStartBox">
+						<h3 id="quickBoxMargin" class="quickBoxHeader" >A Home Dinner Service</h3>
+						<hr id="priceDivider" class="reduceMargin">
+						<p id="quickBoxMargin"> Lorem Ipsum bitches </p>
+						<div id="quickBoxMargin">
+							Start Quickly<br/>
+							<button id="toNewDinner" class="btn btn-warning">Create new dinner</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="dinnerOverviewView" style="display: none;">
+			<div class="row" id="myDinnerHeader">
+				<div class="col-md-4" >
+					<h2 id="myDinner">My Dinner: <span id="numberOfGuests"></span> people</h2>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<button class="btn btn-warning backToEdit">Go back and edit dinner</button>
+				</div>
+			</div>
+
+			<hr id="headerDivider">
+			<div id="dinnerDetails">
+				<div class="row" id="imageRow"></div><!-- Images -->
+				
+				<strong><div class="row" id="nameRow"></div></strong> <!-- Names -->
+				
+				<div class="row" id="priceRow"></div> <!-- Prices -->
+			</div>	
+			
+			<hr style='border-color:black;width:100%;border-width:3px;'>
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<center><button id="printRecipe" class="btn btn-warning">Print full recipe</button></center>
+				</div>
+			</div>
+		</div>
+
+		<div id="dinnerPreparationView" style="display: none;">
+			<div class="row" id="myDinnerHeader">
+				<div class="col-md-4">
+					<h2 id="myDinner">My Dinner: <span id="numberOfGuests"></span> people</h2>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<button class="btn btn-warning backToEdit">Go back and edit dinner</button>
+				</div>
+			</div>
+
+			<hr id="headerDivider">
+			<div id="preparations"></div>
+		</div>
+
+		<div id="exampleView" style="display: none;">
+			<div class="col-md-3" id="leftPanel">
+				<div id="guestDetails">
+					<h2>My Dinner</h2>
+					People: <span id="numberOfGuests"></span>
+					<div class="btn-group-vertical">
+						<button id="plusGuest" class="btn"><span class="glyphicon glyphicon-chevron-up"></span></button>
+		          		<button id="minusGuest" class="btn"><span class="glyphicon glyphicon-chevron-down"></span></button>
+					</div>
+				</div>
+				<div id="dishDetails">
+					<div id="chosenDish">
+						<h4>
+							<hr id="subHeaderDivider">
+							<div class="row" id="subDishHeader">
+								<div class="col-md-9">Dish Name</div>
+								<div class="col-md-2">Cost</div>
+							</div>
+							<hr id="subHeaderDivider">
+						</h4>
+						<strong>
+							<span id="fullMenu"></span>
+						</strong>
+					</div>
+					<hr id="priceDivider">
+					<div id="cost" class="col-md-6 col-md-offset-6">
+						<h3 class="totalCost">SEK <span id="totalCost"></span></h3>
+					</div>
+					<div id="confirm">
+						<button id="confirmDinner" class="btn btn-warning enabled">Confirm Dinner</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="selectDishView" style="display:none;">
+			<div id="selectDish">
+				<div class="col-md-9" id="rightPanel">
+					<div id="search">
+						<h3 class="offset"> Select Dish </h3>
+						<hr id="priceDivider">
+					  	<div class="form-inline offset">
+					    	<input type="text submit" class="form-control" placeholder="Enter key words" id="searchBar">
+
+							<button type="submit" class="btn btn-warning" id="searchButton">Search</button>
+							<div class="dropdown">
+						 		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+							    <span id="selectedDishType"></span>
+							    	<span class="caret"></span>
+							  	</button>
+							  	<!-- Dropdown Menu -->
+							  	<ul class="dropdown-menu clickable" role="menu" aria-labelledby="dropdownMenu1">
+							    	<li role="presentation"><a role="menuitem" tabindex="-1" id="dropdownAppetizer">Appetizer</a></li>
+							    	<li role="presentation"><a role="menuitem" tabindex="-1" id="dropdownMainCourse">Main Course</a></li>
+							    	<li role="presentation"><a role="menuitem" tabindex="-1" id="dropdownDessert">Dessert</a></li>
+							  	</ul>
+							</div>
+						</div>
+			  		</div>
+					<span id="allDeezDishes"></span>
+		  		</div>
+			</div>
+		</div>
+
+		<div id="dishDetailView" style="display: none;">
+			<div class="col-md-4">
+			
+				<div id="dishName">
+					<h2><span id="nameOfDish"></span></h2>
+				</div>
+		
+				<div id="dishPicture">
+					<span id="dishImg"></span>
+				</div>
+
+				<div id="dishDescription">
+					<span id="dishDesc"></span>
+				</div>
+				<br/>
+				<div id="backButton">
+						<button class="btn btn-warning backToEdit">Back to select dish</button>
+				</div>
+			</div>
+		</div>
+
+		<div id="dishIngredientView" style="display: none;">
+			<div class="col-md-5" id="ingredients">
+				<h3>Ingredients for <span id="numberOfGuests"></span> people</h3>
+				<div id="dishOverview">
+					<span id="menuDetails"></span>
+					<hr id='priceDivider'>
+					<div class='row'>
+						<div class='col-md-4'>
+							<center><button class='btn btn-warning backToEdit' id='addButton'>Confirm dish</button></center>
+						</div>
+						<div class='col-md-offset-5 col-md-1'> SEK </div>
+						<div class='col-md-1'><span id="selectedDishPrice"></span></div>
+					</div>
+					<!-- <span id=""></span> -->
+				</div>
+			</div>
+		</div>
+		
+	</div>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/exampleView.js"></script>
+	<script src="js/view/dishDetailView.js"></script>
+	<script src="js/view/dishIngredientView.js"></script>
+	<script src="js/view/selectDishView.js"></script>
+	<script src="js/view/dinnerOverviewView.js"></script>
+	<script src="js/view/dinnerPreparationView.js"></script>
+	<script src="js/controller/exampleViewController.js"></script>
+	<script src="js/controller/selectDishController.js"></script>
+	<script src="js/controller/dishDetailViewController.js"></script>
+	<script src="js/controller/dishIngredientViewController.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/displayViews.js"></script>
+
+	<!-- <script src="js/view/exampleViewController.js"></script> -->
+  </body>
+</html>
