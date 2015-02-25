@@ -11,20 +11,22 @@ var DishDetailView = function (container, model) {
 
 	this.getDetailView = function(){
 		var pendingID = model.getPending();
-
+		var pendingDish = model.getDish(pendingID);
 		if(pendingID === "none"){
 			this.dishName.html("No pending dishes");
 		} else {
-
-			this.dishName.html(model.getDish(pendingID).name);
-			this.dishPic.html("<img src='images/"+model.getDish(pendingID).image+"' width='350px' class='img-thumbnail'>");
-			this.dishDescription.html(model.getDish(pendingID).description);
+			console.log("Hämtade rätt: "+pendingDish.Title);
+			this.dishName.html(pendingDish.Title);
+			this.dishPic.html("<img src='"+pendingDish.ImageURL+"' width='350px' class='img-thumbnail'>");
+			this.dishDescription.html(model.recipeSearch(pendingID));
 		};
 
 	};
 	
 	this.update = function(arg){
+		console.log("Uppdaterar dishDetailView..");
 		var dishID = model.getPending();
+		console.log("Pending dish är: "+dishID);
 		this.getDetailView(dishID);
 	};
 

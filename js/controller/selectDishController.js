@@ -1,12 +1,17 @@
-var SelectDishController = function(view, model ) {
+var SelectDishController = function(view, model) {
+
 	view.searchButton.click(function(){
-		view.getRecipeJson();
+		var titleKeyword = document.getElementById("searchBar").value;
+		titleKeyword.replace(/\s+/g, '-').toLowerCase();
+		model.keywordSearch(titleKeyword);
 	})
 
 	// Make search when enter is pressed
     $('#searchBar').keypress(function(e) {
         if(e.which == 10 || e.which == 13) {
-            view.getRecipeJson();
+        	var titleKeyword = document.getElementById("searchBar").value;
+        	titleKeyword.replace(/\s+/g, '-').toLowerCase();
+            model.keywordSearch(titleKeyword);
         }
     });	
 

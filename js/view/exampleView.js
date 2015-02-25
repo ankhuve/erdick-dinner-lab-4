@@ -6,6 +6,7 @@ var ExampleView = function (container, model) {
 	this.plusButton = container.find("#plusGuest");
 	this.minusButton = container.find("#minusGuest");
 	this.fullMenu = container.find("#fullMenu");
+	this.totalCost = container.find("#totalCost");
 
 	model.addObserver(this);
 
@@ -14,15 +15,16 @@ var ExampleView = function (container, model) {
 	};
 
 	this.update = function(arg){
+		console.log("Uppdaterar exampleView..");
 		this.numberOfGuests.html(model.getNumberOfGuests());
 
 		var pendingDish = model.getPending();
 
 		if(pendingDish != "none"){
-			this.totalCost.html(model.getTotalMenuPrice() + model.getPriceOfDish(model.getDish(pendingDish)));
+			// this.totalCost.html(model.getTotalMenuPrice() + model.getPriceOfDish(model.getDish(pendingDish)));
 			document.getElementById("confirmDinner").disabled = true;
 		} else {
-			this.totalCost.html(model.getTotalMenuPrice());
+			// this.totalCost.html(model.getTotalMenuPrice());
 			document.getElementById("confirmDinner").disabled = false;
 		} 
 		if(model.getFullMenu().length === 0){
@@ -38,8 +40,8 @@ var ExampleView = function (container, model) {
 			
 
 			menuSummary += "<div class='row' id='"+dish+"'>";
-			menuSummary += "<div class='col-md-8'>"+menuObject[dish].name+"</div>";
-			menuSummary += "<div class='col-md-3 col-md-offset-1'>"+model.getPriceOfDish(menuObject[dish])+" <span id='"+menuObject[dish].id+"' onclick='$(this).removeDish("+menuObject[dish].id+")' class='glyphicon glyphicon-remove clickable'></span></div>";
+			menuSummary += "<div class='col-md-8'>"+menuObject[dish].Title+"</div>";
+			// menuSummary += "<div class='col-md-3 col-md-offset-1'>"+model.getPriceOfDish(menuObject[dish])+" <span id='"+menuObject[dish].id+"' onclick='$(this).removeDish("+menuObject[dish].id+")' class='glyphicon glyphicon-remove clickable'></span></div>";
 			menuSummary += "</div>";
 		}
 
@@ -48,7 +50,7 @@ var ExampleView = function (container, model) {
 		if(pendingDish != "none"){
 			menuSummary += "<div class='row'>";
 			menuSummary += "<div class='col-md-9'> Pending </div>";
-			menuSummary += "<div class='col-md-2'>"+model.getPriceOfDish(model.getDish(pendingDish))+"</div>";
+			// menuSummary += "<div class='col-md-2'>"+model.getPriceOfDish(model.getDish(pendingDish))+"</div>";
 			menuSummary += "</div>";
 		} else {
 			menuSummary += "<div class='row'>";
@@ -59,9 +61,9 @@ var ExampleView = function (container, model) {
 		return menuSummary;
 	}
 
-	this.fullMenu.html(generateMenuSummary());
+	// this.fullMenu.html(generateMenuSummary());
 
-	this.totalCost = container.find("#totalCost");
+	
 	this.totalCost.html(model.getTotalMenuPrice());
 	document.getElementById("confirmDinner").disabled = true;
 	this.numberOfGuests.html(model.getNumberOfGuests());
