@@ -10,27 +10,33 @@ var DishIngredientView = function (container, model) {
 
 	model.addObserver(this);
 	
-	this.update = function(arg){
+	this.update = function(){
 		this.menuDetails.html(getMenuDetails().ingredientDetails);
 		this.numberOfGuests.html(model.getNumberOfGuests());
 		this.dishPrice.html(getMenuDetails().totalPrice);
 	}
 
 	var getMenuDetails = function(){
-		var dishID = model.getPending();
+		var pendingDish = model.getPending();
 
-		if(dishID!="none"){
-			var selectedDish = model.getDish(dishID);
+		if(pendingDish!="none"){
 			var returnstring = "";
 			var totalPrice = 0;
-			for(ingredient in selectedDish.ingredients){
+			for(ingredient in pendingDish.Ingredients){
+				
 				returnstring += "<div class='row'>";
-				returnstring += "<div class='col-md-3'>"+(selectedDish.ingredients[ingredient].quantity*model.getNumberOfGuests()).toFixed(1)+" "+selectedDish.ingredients[ingredient].unit+"</div>";
-				returnstring += "<div class='col-md-6'>"+selectedDish.ingredients[ingredient].name+"</div>";
+				if(pendingDish.Ingredients[ingredient].Unit === null){
+									returnstring += "<div class='col-md-3'>"+(pendingDish.Ingredients[ingredient].Quantity*model.getNumberOfGuests()).toFixed(1)+"</div>";
+				} else {
+					returnstring += "<div class='col-md-3'>"+(pendingDish.Ingredients[ingredient].Quantity*model.getNumberOfGuests()).toFixed(1)+" "+pendingDish.Ingredients[ingredient].Unit+"</div>";
+				}
+				
+				returnstring += "<div class='col-md-6'>"+pendingDish.Ingredients[ingredient].Name+"</div>";
 				returnstring += "<div class='col-md-1'> SEK </div>";
-				returnstring += "<div class='col-md-1'>"+(selectedDish.ingredients[ingredient].price*model.getNumberOfGuests()).toFixed(2)+"</div>";
+				returnstring += "<div class='col-md-1'>"+(pendingDish.Ingredients[ingredient].Quantity*model.getNumberOfGuests()).toFixed(2)+"</div>";
 				returnstring += "</div>";
-				totalPrice += selectedDish.ingredients[ingredient].price * model.getNumberOfGuests();
+				totalPrice += pendingDish.Ingredients[ingredient].Quantity * model.getNumberOfGuests();
+				pendingDish.pricePerPerson = totalPrice/model.getNumberOfGuests();
 			}
 
 			var dishDetails = {

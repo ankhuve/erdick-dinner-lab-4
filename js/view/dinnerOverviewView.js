@@ -4,8 +4,6 @@ var DinnerOverviewView = function (container, model) {
 
 	model.addObserver(this);
 
-	
-
 	this.imageRow = container.find("#imageRow");
 	this.nameRow = container.find("#nameRow");
 	this.priceRow = container.find("#priceRow");
@@ -24,11 +22,11 @@ var DinnerOverviewView = function (container, model) {
 
 		for(dish in fullMenu){
 			imageRowString += "<div class='col-md-2 col-md-offset-1'>";
-			imageRowString += "<img src='images/"+fullMenu[dish].image+"'>";
+			imageRowString += "<img src='"+fullMenu[dish].ImageURL+"' class='imgThumb'>";
 			imageRowString += "</div>";
 
 			nameRowString += "<div class='col-md-2 col-md-offset-1'>";
-			nameRowString += fullMenu[dish].name;
+			nameRowString += fullMenu[dish].Title;
 			nameRowString += "</div>";
 
 			priceRowString += "<div class='col-md-2 col-md-offset-1'>";
@@ -44,6 +42,6 @@ var DinnerOverviewView = function (container, model) {
 		this.priceRow.html(priceRowString);
 	}
 
-	this.generateOverview();
+	// this.generateOverview();
 	
 }

@@ -54,10 +54,6 @@ h2{
 	padding-left: 40px;
 }
 
-/*#imageRow{
-	margin-top: 30px;
-}*/
-
 #dinnerDetails{
 	margin-top: 30px;
 
@@ -223,10 +219,6 @@ h3.offset{
 	margin-bottom: 15px;
 }
 
-/*.img-thumbnail{
-	width: inherit;
-}*/
-
 #rightPanel{
 	padding-left: 0px;
 	padding-right: 0px;
@@ -235,3 +227,13 @@ h3.offset{
 .clickable:hover{
 	cursor: pointer;
 }
+
+.imgThumb {
+	height:200px;
+}
+
+.instructions {
+	height:250px;
+	overflow: scroll;
+}
+
