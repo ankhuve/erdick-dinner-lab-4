@@ -5,7 +5,12 @@ var DinnerModel = function() {
 	var menu = [];
 	var observers = [];	
 	var dishes = [];
- 
+	var loading = true;
+	var error = false;
+ 	
+ 	this.isLoading = function(){
+ 		return loading;
+ 	}
 	this.addObserver = function(observer) {
 		observers.push(observer);
 	}
@@ -21,7 +26,7 @@ var DinnerModel = function() {
             success: function (data) {
                 pending = data;
                 notifyObservers();
-            } 
+            }
         });
 	}
 
@@ -100,6 +105,8 @@ var DinnerModel = function() {
 	}
 
 	this.generateDishes = function(type, filter){
+		loading = true;
+		notifyObservers();
 		var apiKey = "dvxLl271adHi9kSJNj29sNWp256I35Y0";
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&api_key="+apiKey;
 		
@@ -110,12 +117,20 @@ var DinnerModel = function() {
             url: url,
             success: function (data) {
                 dishes = data.Results;
+                loading = false;
+                error = false;
                 notifyObservers();
-            } 
+            }, 
+            error: function() {
+            	error = true;
+            	notifyObservers();
+            }
         });
 	}
 
 	this.searchDishes = function(keyword){
+		loading = true;
+		notifyObservers();
 		var apiKey = "dvxLl271adHi9kSJNj29sNWp256I35Y0";
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw="+keyword+"&api_key="+apiKey;
 		
@@ -125,10 +140,20 @@ var DinnerModel = function() {
             cache: false,
             url: url,
             success: function (data) {
+            	loading = false;
+            	error = false;
                 dishes = data.Results;
                 notifyObservers();
-            } 
+            }, 
+            error: function(){
+            	error = true;
+            	notifyObservers();
+            }
         });
+	}
+
+	this.checkError = function(){
+		return error;
 	}
 
 	this.getPriceOfDish = function(dish){

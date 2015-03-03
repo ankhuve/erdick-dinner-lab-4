@@ -20,7 +20,7 @@ var ExampleView = function (container, model) {
 
 		if(pendingDish != "none"){
 			// this.totalCost.html("100"); //TODO
-			this.totalCost.html(model.getTotalMenuPrice() + model.getPriceOfDish(pendingDish));
+			this.totalCost.html((model.getTotalMenuPrice() + model.getPriceOfDish(pendingDish)).toFixed(2));
 			document.getElementById("confirmDinner").disabled = true;
 		} else {
 			this.totalCost.html(model.getTotalMenuPrice());
